@@ -1,6 +1,8 @@
 // enum - объект констант, которая принимает левую часть как ключ(напр. CHANGE_CURRENCY_FIELD_TYPE),
 // а правую как значение('CurrencyExchange/CHANGE_CURRENCY_FIELD_TYPE'), этим способом мы избегаем множественных
 // экспортови множественных импортов в другом файле, у нас один экспорт и один импорт в файле currencyReducer.ts
+import {useDispatch} from 'react-redux';
+
 export enum ACTIONS_TYPE {
     CHANGE_CURRENCY_FIELD_TYPE = 'CurrencyExchange/CHANGE_CURRENCY_FIELD_TYPE',
     CHANGE_CHANGE_ACTION = 'CurrencyExchange/CHANGE_CHANGE_ACTION',
@@ -37,7 +39,7 @@ export const ChangeActionAC = (isBuying: boolean): ChangeActionType => {
 
 export type ChangeCurrentCurrencyType = {
     type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY,
-    payload: {currentCurrency: string}
+    payload: { currentCurrency: string }
 };
 
 export const ChangeCurrentCurrencyAC = (currentCurrency: string): ChangeCurrentCurrencyType => {
@@ -48,3 +50,9 @@ export const ChangeCurrentCurrencyAC = (currentCurrency: string): ChangeCurrentC
 };
 
 export type CurrencyReducersTypes = ChangeCurrencyFieldType | ChangeActionType | ChangeCurrentCurrencyType;
+
+// кастомный useDispatch, который проверяет типизацию AC
+export const TypedDispatch = () => {
+    const dispatch = useDispatch();
+    return (AC: CurrencyReducersTypes) => dispatch(AC)
+}
