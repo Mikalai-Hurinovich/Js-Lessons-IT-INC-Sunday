@@ -1,3 +1,6 @@
+import {rejects} from "assert";
+import {log} from "util";
+
 console.log('lesson 4');
 
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
@@ -8,18 +11,39 @@ console.log('lesson 4');
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
 
+// let promise = new Promise((res, rej) => {
+//     console.log("Promise is created")
+// })
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+// let promise = new Promise((resolve, reject) => {
+//     return resolve('Promise Data')
+// })
+//     .then(resolve => {
+//     console.log(resolve)
+// })
 
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
 
+// let promise = new Promise((resolve, reject) => {
+//     if (false) {
+//         resolve('Promise Resolve')
+//     } else {
+//         reject('Promise Error')
+//     }
+// })
+//     .then(res => {
+//         console.log(res)
+//     }, rej => {
+//         console.log(rej)
+//     })
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
@@ -27,6 +51,20 @@ console.log('lesson 4');
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+// let promise = new Promise((resolve, reject) => {
+//     if (true) {
+//         setTimeout(() => {
+//             resolve('Promise Data')
+//         }, 3000)
+//     } else {
+//         reject('Promise Error')
+//     }
+// })
+// promise.then(res => {
+//     console.log(res)
+// }, rej => {
+//     console.log(rej)
+// })
 
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:
@@ -41,6 +79,17 @@ console.log('lesson 4');
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
+const handlePromise = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (paramName: string) => {
+        console.log(`Promise is resolved with data: ${paramName}`)
+    },
+    onError: (paramName: string) => {
+        console.log(`Promise is rejected with error: ${paramName}`)
+    }
+}
 
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
@@ -57,6 +106,6 @@ console.log('lesson 4');
 // и выведите в консоль {name, age, city}
 
 
-
 // just a plug
-export default ()=>{};
+export default () => {
+};
