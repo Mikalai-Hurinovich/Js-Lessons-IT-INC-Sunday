@@ -1,11 +1,16 @@
-import {rejects} from "assert";
-import {log} from "util";
-import {promises} from "fs";
-
 console.log('lesson 4');
 
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
 // https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+
+// async function f() {
+//     let a = 10;
+//     // throw 0;
+//     return 5;
+// }
+//
+// console.log(f())
+
 
 
 // Task 01
@@ -81,40 +86,40 @@ console.log('lesson 4');
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
 
-// type handlePromiseType = {
-//     promise: null | Promise<any>
-//     resolve: null | Function
-//     reject: null | Function
-//     onSuccess: (paramName: string) => void
-//     onError: (paramName: string) => void
-// }
-// export const handlePromise: handlePromiseType = {
-//     promise: null,
-//     resolve: null,
-//     reject: null,
-//     onSuccess: (paramName: string) => {
-//         return console.log(`Promise is resolved with data: ${paramName}`)
-//     },
-//     onError: (paramName: string) => {
-//         return console.log(`Promise is rejected with error: ${paramName}`)
-//     }
-// }
-// export const CreatePromise = () => {
-//     let newPromise: Promise<any> = new Promise((res, rej) => {
-//         handlePromise.resolve = res
-//         handlePromise.reject = rej
-//     })
-//     handlePromise.promise = newPromise
-//
-//     newPromise.then(res => handlePromise.onSuccess(res)).catch(rej => handlePromise.onError(rej))
-//
-// }
-// export const resolvePromise = () => {
-//     handlePromise.resolve && handlePromise.resolve('+')
-// }
-// export const rejectPromise = () => {
-//     handlePromise.reject && handlePromise.reject('-')
-// }
+type handlePromiseType = {
+    promise: null | Promise<any>
+    resolve: null | Function
+    reject: null | Function
+    onSuccess: (paramName: string) => void
+    onError: (paramName: string) => void
+}
+export const handlePromise: handlePromiseType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (paramName: string) => {
+        return console.log(`Promise is resolved with data: ${paramName}`)
+    },
+    onError: (paramName: string) => {
+        return console.log(`Promise is rejected with error: ${paramName}`)
+    }
+}
+export const CreatePromise = () => {
+    let newPromise: Promise<any> = new Promise((res, rej) => {
+        handlePromise.resolve = res
+        handlePromise.reject = rej
+    })
+    handlePromise.promise = newPromise
+
+    newPromise.then(res => handlePromise.onSuccess(res)).catch(rej => handlePromise.onError(rej))
+
+}
+export const resolvePromise = () => {
+    handlePromise.resolve && handlePromise.resolve('+') // если в левой части не null, тогда вызови ф-ию с (+)
+}
+export const rejectPromise = () => {
+    handlePromise.reject && handlePromise.reject('-')
+}
 
 
 // Task 06
@@ -154,24 +159,24 @@ console.log('lesson 4');
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
-let name: Promise<{ name: string }> = new Promise((res) => {
-    setTimeout(() => {
-        res({name: "Mikola"})
-    }, 2000)
-})
-let age: Promise<{ age: number }> = new Promise((res) => {
-    setTimeout(() => {
-        res({age: 28})
-    }, 3000)
-})
-let city: Promise<{ city: string }>= new Promise((res) => {
-    setTimeout(() => {
-        res({city: 'Minsk'})
-    }, 4000)
-})
-Promise.all([name, age, city]).then(values => {
-    return console.log(values[0].name, values[1].age, values[2].city)
-})
+// let name: Promise<{ name: string }> = new Promise((res) => {
+//     setTimeout(() => {
+//         res({name: "Mikola"})
+//     }, 2000)
+// })
+// let age: Promise<{ age: number }> = new Promise((res) => {
+//     setTimeout(() => {
+//         res({age: 28})
+//     }, 3000)
+// })
+// let city: Promise<{ city: string }> = new Promise((res) => {
+//     setTimeout(() => {
+//         res({city: 'Minsk'})
+//     }, 4000)
+// })
+// Promise.all([name, age, city]).then(values => {
+//     return console.log(values[0].name, values[1].age, values[2].city)
+// })
 
 // just a plug
 export default () => {

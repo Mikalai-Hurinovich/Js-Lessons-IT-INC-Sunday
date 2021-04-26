@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import API from './API';
 import './lesson_3';
-import {AxiosResponse} from "axios";
 
 const Lesson3 = () => {
     const [searchName, setSearchName] = useState('');
@@ -13,7 +12,7 @@ const Lesson3 = () => {
         API.searchFilmsByTitle(searchName)
             .then(({data}) => {
                 const {Response, Error, Search} = data
-                // console.log(data)
+                console.log(data)
                 if (Response === 'True') {
                     setSearchResult(JSON.stringify(Search))
                 } else {
@@ -25,13 +24,12 @@ const Lesson3 = () => {
             })
 
     };
-    JSON.parse(searchResult)
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const type: string = e.currentTarget.dataset.t ? e.currentTarget.dataset.t : '';
         API.searchFilmsByType(searchNameByType, type)
             .then(({data}) => {
                 const {Response, Error, Search} = data
-                // console.log(data)
+                console.log(data)
                 if (Response === 'True') {
                     setSearchResultByType(JSON.stringify(Search))
                 } else {
@@ -47,12 +45,13 @@ const Lesson3 = () => {
                 <input type="text" value={searchName} onChange={(e) => setSearchName(e.currentTarget.value)}/>
                 <button onClick={searchFilm}>Search</button>
                 <div>
-                    {JSON.parse(searchResult).map((film: { Title: React.ReactNode; Year: React.ReactNode; Poster: string | undefined; }) =>
-                        <div>
-                            {film.Title}
-                            {film.Year}
-                            <img src={film.Poster} alt=""/>
-                        </div>)}
+                    {searchResult}
+                    {/*{JSON.parse(searchResult).map((film: { Title: any; Year: any; Poster: any; }) =>*/}
+                    {/*    <div>*/}
+                    {/*        {film.Title}*/}
+                    {/*        {film.Year}*/}
+                    {/*        <img src={film.Poster} alt=""/>*/}
+                    {/*    </div>)}*/}
                 </div>
             </div>
 
