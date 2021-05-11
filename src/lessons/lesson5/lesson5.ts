@@ -74,11 +74,11 @@ someObj.greeting = greeting;
 someObj.greeting();
 
 
-let obj: any = {
-    func: () => {
-        console.log('arrow', this)
-    }
-}
+// let obj: any = {
+//     func: () => {
+//         console.log('arrow', this)
+//     }
+// }
 
 // Task 02
 // реализовать счетчик counter в виде объекта со следующими методами:
@@ -174,8 +174,8 @@ let Two = {
         console.log(`Hello, my name is ${this.name}`)
     }
 };
-let sayHelloOne = Two.sayHello.bind(One)
-console.log(sayHelloOne())
+let sayHelloOne = Two.sayHello.bind(One)()
+console.log(sayHelloOne)
 
 
 // Task 06
