@@ -151,6 +151,7 @@ console.log(dumbHuman.eat())
 // }
 // peter.sayName.customBind(mikola)()
 
+
 // just a plug
 export default () => {
 };
